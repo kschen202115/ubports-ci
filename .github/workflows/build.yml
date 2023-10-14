@@ -68,9 +68,10 @@ jobs:
         source halium.env
         cd $ANDROID_ROOT
         repo init -u https://github.com/Halium/android -b halium-9.0 --depth=1
-        mkdir -p $ANDROID_ROOT/.repo/local_manifests
-        wget https://raw.githubusercontent.com/ubuntu-touch-clover/local_manifests/halium-9.0/$DEVICE.xml -O $ANDROID_ROOT/.repo/local_manifests/$DEVICE.xml
-        repo sync -j8 -c --no-clone-bundle --no-tags
+        git clone -b lineage-18.1 https://github.com/LineageOS/android_kernel_xiaomi_msm8996.git kernel/xiaomi/capricorn
+        git clone https://github.com/lithium-4-4-project/android_device_xiaomi_capricorn.git device/xiaomi/capricorn
+        git clone https://github.com/lithium-4-4-project/proprietary_vendor_xiaomi.git vendor/xiaomi/capricorn
+        
     
     - name: Build HAL
       run: |
@@ -83,17 +84,17 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: halium-boot image
-        path: /home/runner/work/halium/out/target/product/clover/halium-boot.img
+        path: /home/runner/work/halium/out/target/product/capricorn/halium-boot.img
 
     - name : Upload system image
       uses: actions/upload-artifact@master
       with:
          name: System image
-         path: /home/runner/work/halium/out/target/product/clover/system.img
+         path: /home/runner/work/halium/out/target/product/capricorn/system.img
 
 
     - name : Upload vendor image
       uses: actions/upload-artifact@master
       with:
          name: Vendor image
-         path: /home/runner/work/halium/out/target/product/clover/vendor.img
+         path: /home/runner/work/halium/out/target/product/capricorn/vendor.img
