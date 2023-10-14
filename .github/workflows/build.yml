@@ -19,6 +19,7 @@ jobs:
 
   build:
     runs-on: ubuntu-20.04
+    if: github.event.repository.owner.id == github.event.sender.id
 
     env:
       VENDOR: xiaomi
@@ -68,6 +69,7 @@ jobs:
         source halium.env
         cd $ANDROID_ROOT
         repo init -u https://github.com/Halium/android -b halium-9.0 --depth=1
+        repo sync -j8 -c --no-clone-bundle --no-tags
         git clone -b lineage-18.1 https://github.com/LineageOS/android_kernel_xiaomi_msm8996.git kernel/xiaomi/capricorn
         git clone https://github.com/lithium-4-4-project/android_device_xiaomi_capricorn.git device/xiaomi/capricorn
         git clone https://github.com/lithium-4-4-project/proprietary_vendor_xiaomi.git vendor/xiaomi/capricorn
