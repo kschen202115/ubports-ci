@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <remote  name="lod" fetch="https://github.com/LineageOS/" />
   <remote  name="lithium-project" fetch="https://github.com/lithium-4-4-project" revision="thirteen" />
-
   <!-- Device Specific -->
-  <project name="android_kernel_xiaomi_msm8996" path="kernel/xiaomi/msm8996" remote="lithium-project" />
+  <project name="android_kernel_xiaomi_msm8996" path="kernel/xiaomi/msm8996" remote="lod" revision="lineage-16.0"/>
   <project name="android_device_xiaomi_capricorn" path="device/xiaomi/capricorn" remote="lithium-project" />
   
   <project name="proprietary_vendor_xiaomi" path="vendor/xiaomi" remote="lithium-project" />
